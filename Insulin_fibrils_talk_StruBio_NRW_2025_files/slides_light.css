@@ -1,0 +1,541 @@
+/* Advanced Slides Modern CSS Configuration - Fixed Spacing */
+
+/* Root variables for consistent theming */
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #64748b;
+  --accent-color: #06b6d4;
+  --background-color: #ffffff;
+  --text-color: #1e293b;
+  --text-light: #64748b;
+  --border-color: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --slide-padding: 3rem;
+}
+
+/* Main slide container */
+.reveal .slides {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--text-color);
+  background: var(--background-color);
+}
+
+/* Individual slide styling - FIXED SPACING */
+.reveal .slides section {
+  padding: var(--slide-padding);
+  text-align: left;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  padding-top: 4rem; /* Add consistent top padding */
+  padding-bottom: 4rem; /* Add consistent bottom padding */
+}
+
+/* Content wrapper for better spacing control */
+.reveal .slides section > * {
+  margin-top: 0;
+}
+
+.reveal .slides section > *:first-child {
+  margin-top: 0;
+}
+
+.reveal .slides section > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings with improved spacing */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  color: var(--text-color);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  text-transform: none;
+}
+
+.reveal h1 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+.reveal h2 {
+  font-size: 2.25rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  margin-top: 2rem; /* Add consistent spacing above h2 */
+}
+
+.reveal h2:first-child {
+  margin-top: 0; /* Remove top margin for first h2 */
+}
+
+.reveal h3 {
+  font-size: 1.75rem;
+  color: var(--secondary-color);
+  margin-top: 1.5rem;
+}
+
+.reveal h3:first-child {
+  margin-top: 0;
+}
+
+.reveal h4 {
+  font-size: 1.25rem;
+  color: var(--secondary-color);
+  margin-top: 1rem;
+}
+
+/* Paragraph and text styling with consistent spacing */
+.reveal p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  color: var(--text-color);
+}
+
+/* Lists with improved spacing */
+.reveal ul, .reveal ol {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  padding-left: 1.5rem;
+}
+
+.reveal li {
+  margin-bottom: 0.5rem; /* Reduced from 0.75rem */
+  color: var(--text-color);
+}
+
+.reveal li:last-child {
+  margin-bottom: 0;
+}
+
+.reveal ul li::marker {
+  color: var(--accent-color);
+}
+
+/* Better spacing between consecutive elements */
+.reveal h2 + p,
+.reveal h3 + p,
+.reveal h2 + ul,
+.reveal h3 + ul {
+  margin-top: 0;
+}
+
+.reveal p + h2,
+.reveal ul + h2,
+.reveal p + h3,
+.reveal ul + h3 {
+  margin-top: 2.5rem;
+}
+
+.reveal p + ul,
+.reveal p + ol {
+  margin-top: 1rem;
+}
+
+/* Automatic Image Scaling */
+.reveal img {
+  max-width: 100%;
+  max-height: 90vh; /* Prevent images from taking full slide height */
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  margin: 1rem auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+/* Special handling for images in content blocks */
+.reveal section img {
+  max-height: 90vh; /* Slightly smaller when mixed with other content */
+}
+
+/* Large image display when image is main content */
+.reveal section:has(> h2 + p > img),
+.reveal section:has(> h2 + img) {
+  align-items: center;
+}
+
+.reveal section:has(> h2 + p > img) img,
+.reveal section:has(> h2 + img) img {
+  max-height: 80vh;
+  margin: 2rem auto;
+}
+
+/* Alternative selector for better browser support */
+.reveal section > h2 + p > img:only-child,
+.reveal section > h2 + img {
+  max-height: 90vh;
+  margin: 2rem auto;
+}
+
+/* When slide has only title and image, make image even larger */
+.reveal section > h2:first-child + p > img:only-child,
+.reveal section > h2:first-child + img:last-child {
+  max-height: 95vh;
+  margin: 3rem auto;
+}
+
+/* Image captions */
+.reveal figcaption {
+  font-size: 0.5rem;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+/* Code blocks */
+.reveal pre {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  overflow: auto;
+  max-height: 60vh;
+}
+
+.reveal code {
+  background: #f1f5f9;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.9em;
+  color: var(--primary-color);
+}
+
+/* Tables */
+.reveal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+}
+
+.reveal th, .reveal td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.reveal th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Blockquotes */
+.reveal blockquote {
+  border-left: 4px solid var(--accent-color);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--text-light);
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Emphasis and strong */
+.reveal em {
+  color: var(--primary-color);
+  font-style: italic;
+}
+
+.reveal strong {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* Progress bar */
+.reveal .progress {
+  color: var(--accent-color);
+  height: 4px;
+}
+
+/* Slide numbers */
+.reveal .slide-number {
+  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+/* Title slide specific styling */
+.reveal .title-slide {
+  text-align: center;
+  justify-content: center; /* Keep centering for title slides */
+}
+
+.reveal .title-slide h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  border: none;
+  padding-bottom: 0;
+}
+
+.reveal .title-slide h2 {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  font-weight: 400;
+  margin-bottom: 3rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --slide-padding: 2rem;
+  }
+  
+  .reveal .slides section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .reveal h1 {
+    font-size: 2.5rem;
+  }
+  
+  .reveal h2 {
+    font-size: 2rem;
+  }
+  
+  .reveal p, .reveal li {
+    font-size: 1.125rem;
+  }
+  
+  .reveal img {
+    max-height: 50vh;
+  }
+}
+
+/* Two-Column Layout Classes */
+.reveal .two-columns {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start; /* Changed from center to flex-start */
+  height: auto; /* Changed from 100% to auto */
+  margin: 2rem 0; /* Changed from 2rem to 2rem 0 */
+}
+
+.reveal .column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Changed from center to flex-start */
+}
+
+.reveal .column-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  padding-right: 1.5rem;
+}
+
+.reveal .column-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  padding-left: 1.5rem;
+}
+
+/* Image column specific styling */
+.reveal .image-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal .image-column img {
+  max-width: 100%;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0;
+}
+
+/* Text column specific styling */
+.reveal .text-column h1,
+.reveal .text-column h2,
+.reveal .text-column h3 {
+  margin-top: 0;
+}
+
+.reveal .text-column p:last-child,
+.reveal .text-column ul:last-child,
+.reveal .text-column ol:last-child {
+  margin-bottom: 0;
+}
+
+/* Simple Markdown Footnote Styling */
+
+/* Footnote references in text */
+.reveal a[href^="#fn"],
+.reveal .footnote-ref {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8em;
+  vertical-align: super;
+  padding: 0 0.2em;
+}
+
+.reveal a[href^="#fn"]:hover,
+.reveal .footnote-ref:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* Footnote section at bottom of slide */
+.reveal .footnotes {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.4;
+}
+
+.reveal .footnotes h2,
+.reveal .footnotes h3 {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.reveal .footnotes ol {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.reveal .footnotes li {
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+
+.reveal .footnotes li:last-child {
+  margin-bottom: 0;
+}
+
+.reveal .footnotes a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.reveal .footnotes a:hover {
+  text-decoration: underline;
+}
+
+/* Alternative simple footnote block */
+.reveal .slide-footnotes {
+  position: absolute;
+  bottom: var(--slide-padding);
+  left: var(--slide-padding);
+  right: var(--slide-padding);
+  font-size: 0.8rem;
+  color: var(--text-light);
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.reveal .slide-footnotes p {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.reveal .slide-footnotes p:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive two-column layout */
+@media (max-width: 1024px) {
+  .reveal .two-columns {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .reveal .column-left,
+  .reveal .column-right {
+    padding: 0;
+  }
+  
+  .reveal .image-column img {
+    max-height: 50vh;
+  }
+  
+  .reveal .footnotes {
+    font-size: 0.8rem;
+  }
+  
+  .reveal .slide-footnotes {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin-top: 2rem;
+  }
+}
+
+/* Special layout variants */
+.reveal .image-left {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start; /* Changed from center to flex-start */
+  margin: 2rem 0;
+}
+
+.reveal .image-left .image-column {
+  flex: 0 0 45%;
+}
+
+.reveal .image-left .text-column {
+  flex: 1;
+}
+
+.reveal .image-right {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start; /* Changed from center to flex-start */
+  margin: 2rem 0;
+  flex-direction: row-reverse;
+}
+
+.reveal .image-right .image-column {
+  flex: 0 0 45%;
+}
+
+.reveal .image-right .text-column {
+  flex: 1;
+}
+
+/* Animation for slide transitions */
+.reveal .slides section.present {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal .slides section.future,
+.reveal .slides section.past {
+  opacity: 0;
+  transform: translateY(20px);
+}
